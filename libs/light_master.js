@@ -115,6 +115,24 @@ class LightMaster {
     }, interval);
   }
 
+  pulse(light) {
+    const transition = 1000;
+    let brightness = 80;
+
+    setInterval(() => {
+      let r = getRandomInt(0,255);
+      let g = getRandomInt(0,255);
+      let b = getRandomInt(0,255);
+      this.setLight(light, lightState.create()
+        .on()
+        .rgb(r, g, b)
+        .brightness(brightness)
+        .transition(transition)
+      );
+      brightness = brightness > 0 ? 0 : 80;
+    }, transition);
+  }
+
   //
   // Light Groups
   //
