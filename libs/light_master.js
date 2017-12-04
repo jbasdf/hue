@@ -140,4 +140,7 @@ class LightMaster {
 }
 
 
-module.exports = LightMaster;
+module.exports = {
+  LightMaster,
+  getRandomInt
+};
