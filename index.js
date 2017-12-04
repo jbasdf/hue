@@ -5,7 +5,7 @@ const fs = require('fs');
 const hue = require('node-hue-api');
 const HueApi = hue.HueApi;
 const username = process.env.USERNAME;
-const LightMaster = require('./light_master');
+const LightMaster = require('./libs/light_master');
 
 function Main(bridge) {
   const host = bridge[0].ipaddress;

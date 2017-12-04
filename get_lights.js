@@ -4,7 +4,7 @@
 require('dotenv').config();
 
 const hue = require('node-hue-api');
-const LightInfo = require('./light_info');
+const LightInfo = require('./libs/light_info');
 
 const username = process.env.USERNAME;
 
