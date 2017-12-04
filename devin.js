@@ -3,6 +3,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const hue = require('node-hue-api');
+const lightState = hue.lightState;
 const HueApi = hue.HueApi;
 const username = process.env.USERNAME;
 const { LightMaster, getRandomInt } = require('./libs/light_master');
@@ -13,15 +14,21 @@ function Main(bridge) {
   const lightMaster = new LightMaster(api);
   const boysLightId = "4";
 
-  // setInterval(function(){
-  // 	lightMaster.goColor(
-  // 		boysLightId,
-  // 		getRandomInt(0, 255),
-  // 		getRandomInt(0, 255),
-  // 		getRandomInt(0, 255));
-  // }, 5000);
+  const transition = 1000;
+  let brightness = 80;
 
-  lightMaster.flickerLight(boysLightId);
+  setInterval(() => {
+    let r = getRandomInt(0,255);
+    let g = getRandomInt(0,255);
+    let b = getRandomInt(0,255);
+    lightMaster.setLight(boysLightId, lightState.create()
+      .on()
+      .rgb(r, g, b)
+      .brightness(brightness)
+      .transition(transition)
+    );
+    brightness = brightness > 0 ? 0 : 80;
+  }, transition);
 };
 
 
